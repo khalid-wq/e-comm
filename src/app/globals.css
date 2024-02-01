@@ -8,10 +8,25 @@
 li {
   display: flex;
   gap: 10px;
+  transition-duration: 150ms;
+  cursor: pointer;
+}
+li:hover {
+  transform: translateX(1.5rem);
+  color: #16a34a;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+input[type="number"],
+input[type="text"],
+input[type="email"] {
+  @apply block w-full  mb-2 rounded-md outline-none;
+  @apply border p-2 border-gray900 bg-gray900;
+}
+textarea {
+  @apply block w-full  mb-2 rounded-xl !outline-none h-32;
+  @apply border p-2 border-gray900 bg-gray900;
+}
+
+label + input + textarea {
+  margin-top: 2px;
 }

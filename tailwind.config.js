@@ -11,7 +11,7 @@ module.exports = {
         backColor: "#172554",
         blue800: "#1e40af",
         greenColor: "#16a34a",
-        gray900: "#1d4ed8",
+        gray900: "#334155",
       },
     },
   },
