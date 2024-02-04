@@ -1,22 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Delete from "../icons/Delete";
 import Edite from "../icons/Edite";
 import Link from "next/link";
 
-function Products() {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data.products);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
+function Products({ id, categories, title, price }) {
   return (
     <div className=" text-white ">
       <div className="my-5 flex gap-5 items-center justify-between">
@@ -34,19 +21,25 @@ function Products() {
             <tr align="left" className="border-b-2 border-gray900 ">
               <th className="p-2">Name</th>
               <th>Price</th>
-              <th>Brand</th>
+              <th>Category</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {" "}
-            {products.map((p, i) => (
-              <tr key={i} className="border-b border-gray900 ">
-                <td className="  py-3 "> {p.title}</td>
-                <td className="  py-3 ">{p.price} $</td>
-                <td className="  py-3 ">{p.brand}</td>
-                <td className="flex gap-2 items-center justify-center   py-3 ">
-                  <Link href={`/admin/products/${p.id}`}>
+            <tr key={id} className="border-b border-gray900 ">
+              <td className="  py-3 "> {title}</td>
+              <td className="  py-3 ">{price} $</td>
+              {categories.map((cat, i) => (
+                <td className="  py-3 " key={i}>
+                  {cat}
+                </td>
+              ))}
+              <td
+                align="right"
+                className="flex gap-2 items-center justify-end   py-3  "
+              >
+                <div className="flex gap-2 justify-center items-center ">
+                  <Link href={`/admin/products/${id}`}>
                     <button>
                       <Edite />
                     </button>
@@ -55,9 +48,9 @@ function Products() {
                   <button>
                     <Delete />
                   </button>
-                </td>
-              </tr>
-            ))}
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

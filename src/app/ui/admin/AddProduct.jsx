@@ -1,4 +1,5 @@
 "use client";
+import prisma from "@/app/lib/prisma";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -7,7 +8,7 @@ function AddProduct() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(null);
   const [description, setDiscreption] = useState("");
-  console.log(image);
+
   return (
     <div className="text-white">
       <div className="my-5 flex gap-5 items-center justify-between">
