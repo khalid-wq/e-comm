@@ -19,7 +19,7 @@ export default function Login() {
             </label>
             <input
               type="email"
-              className="block w-full px-4 py-2 mt-2 text-greenColor bg-white border rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2 !text-greenColor !bg-white border !border-inherit rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <div className="mb-2">

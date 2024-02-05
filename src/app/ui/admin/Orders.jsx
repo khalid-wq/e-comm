@@ -1,5 +1,5 @@
 import React from "react";
-import Delete from "../icons/Delete";
+import Delete from "../../../icons/Delete";
 
 function Orders() {
   const ordersT = [

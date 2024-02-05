@@ -1,10 +1,10 @@
 import React from "react";
-import Dash from "../icons/Dash";
-import Product from "../icons/Product";
-import Order from "../icons/Order";
-import User from "../icons/User";
-import Payment from "../icons/Payment";
-import Setting from "../icons/Setting";
+import Dash from "../../../icons/Dash";
+import Product from "../../../icons/Product";
+import Order from "../../../icons/Order";
+import User from "../../../icons/User";
+import Payment from "../../../icons/Payment";
+import Setting from "../../../icons/Setting";
 import Link from "next/link";
 
 function Sidebare() {

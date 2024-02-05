@@ -1,5 +1,5 @@
 import React from "react";
-import Out from "../icons/Out";
+import Out from "../../../icons/Out";
 
 function TopBare() {
   return (
@@ -25,7 +25,7 @@ function TopBare() {
             <div className="w-6 h-6 rounded-full bg-pink-400 cursor-pointer"></div>
           </div>
         </div> */}
-        <button className="w-fit flex font-semibold gap-5 bg-greenColor p-2 rounded-md hover:-translate-x-5 duration-75">
+        <button className="w-fit flex font-semibold gap-2 bg-greenColor p-2 rounded-md hover:-translate-x-5 duration-75">
           Logout
           <Out />
         </button>
