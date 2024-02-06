@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 
 function Register() {
   const [name, setName] = useState("");
@@ -45,7 +46,7 @@ function Register() {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-              className="block w-full px-4 py-2 mt-2 !text-greenColor !bg-white border !border-inherit rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2  !bg-white border !border-inherit rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <div className="mb-2">
@@ -60,7 +61,7 @@ function Register() {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              className="block w-full px-4 py-2 mt-2 !text-greenColor !bg-white border !border-inherit	 rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2  !bg-white border !border-inherit	 rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <div className="mb-2">
@@ -75,7 +76,7 @@ function Register() {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              className="block w-full px-4 py-2 mt-2 text-greenColor bg-white border rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-greenColor focus:ring-greenColor focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
 
@@ -93,6 +94,7 @@ function Register() {
         </div>
         <div className="flex mt-4 gap-x-2 justify-center items-center">
           <button
+            onClick={() => signIn("google", { callbackUrl: "/" })}
             type="button"
             className="w-fit flex items-center justify-center  p-2 border border-greenColor rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600"
           >

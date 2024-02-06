@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import bcrypte from "bcrypt";
-import { data } from "autoprefixer";
 const prisma = new PrismaClient({
   errorFormat: "pretty",
 });
 export async function POST(request) {
   try {
     const body = await request.json();
-    console.log(body);
     const nothashedPass = body.password;
     const salt = bcrypte.genSaltSync(10);
     const hachedPass = bcrypte.hashSync(nothashedPass, salt);
@@ -20,5 +18,6 @@ export async function POST(request) {
     return new NextResponse(JSON.stringify(user, { status: 200 }));
   } catch (error) {
     console.log(error);
+    return new NextResponse(JSON.stringify(error));
   }
 }
