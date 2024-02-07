@@ -1,7 +1,7 @@
-import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import bcrypt from "bcrypt";
 import NextAuth, { getServerSession } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import bcrypt from "bcrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient({
@@ -11,7 +11,10 @@ const prisma = new PrismaClient({
 //
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
-  maxAge: 4 * 60 * 60,
+  session: {
+    strategy: "jwt",
+    maxAge: 3000,
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -47,17 +50,18 @@ export const authOptions = {
 };
 export async function isAdmin() {
   const session = await getServerSession(authOptions);
-  const userEmail = session?.user?.email;
-  if (!userEmail) {
-    return false;
-  }
-  const userInfo = await prisma.user.findUnique({
-    where: { email: userEmail },
-  });
-  if (!userInfo) {
-    return false;
-  }
-  return userInfo.admin;
+  // const userEmail = session?.user?.email;
+  // if (!userEmail) {
+  //   return false;
+  // }
+  // const userInfo = await prisma.user.findUnique({
+  //   where: { email: userEmail },
+  // });
+  // if (!userInfo) {
+  //   return false;
+  // }
+  // return userInfo.admin;
+  console.log(session);
 }
 const handler = NextAuth(authOptions);
 

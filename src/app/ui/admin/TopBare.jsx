@@ -2,8 +2,12 @@
 import React from "react";
 import Out from "../../../icons/Out";
 import { signOut } from "next-auth/react";
-
+import Image from "next/image";
+import { useSession } from "next-auth/react";
 function TopBare() {
+  const session = useSession();
+  const image = session.data?.user?.image;
+
   return (
     <div className="text-white border-b border-greenColor  p-3  flex justify-between sticky top-0 bg-backColor">
       <div className="w-full">
@@ -13,23 +17,13 @@ function TopBare() {
           placeholder="Search..."
         />
       </div>
-      <div className="flex gap-6">
-        {/* {" "}
-        <div className="flex gap-2 items-center ">
-          <div className="w-7 h-7 bg-slate-500 flex items-center justify-center rounded-full">
-            <div className="w-6 h-6 bg-yellow-500 rounded-full cursor-pointer"></div>
-          </div>
-
-          <div className="w-7 h-7 bg-slate-500 flex items-center justify-center rounded-full">
-            <div className="w-6 h-6 bg-blue-500 rounded-full cursor-pointer"></div>
-          </div>
-          <div className="w-7 h-7 bg-slate-500 flex items-center justify-center rounded-full">
-            <div className="w-6 h-6 rounded-full bg-pink-400 cursor-pointer"></div>
-          </div>
-        </div> */}
+      <div className="flex gap-3 hover:-translate-x-5 duration-75">
+        <div className="w-[30px] h-[30px] relative self-center rounded-full overflow-hidden  shadow-lg cursor-pointer">
+          {image && <Image fill={true} src={image} alt={image}></Image>}
+        </div>{" "}
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="w-fit flex font-semibold gap-2 bg-greenColor p-2 rounded-md hover:-translate-x-5 duration-75"
+          className="w-fit flex font-semibold gap-2 bg-greenColor p-2 rounded-md "
         >
           Logout
           <Out />
