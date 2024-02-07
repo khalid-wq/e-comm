@@ -18,6 +18,18 @@ function Products() {
     }
     getProducts();
   }, []);
+  const handleDeletedProduct = async (id) => {
+    try {
+      await fetch(`/api/products/${id}`, {
+        method: "DELETE",
+      });
+      setProducts((products) =>
+        products.filter((product) => product.id !== id)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className=" text-white ">
@@ -61,7 +73,7 @@ function Products() {
                       </button>
                     </Link>
                     |
-                    <button>
+                    <button onClick={() => handleDeletedProduct(product.id)}>
                       <Delete />
                     </button>
                   </div>

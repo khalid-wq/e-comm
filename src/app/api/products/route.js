@@ -7,18 +7,16 @@ const prisma = new PrismaClient({
 
 export async function POST(request) {
   try {
-    const { title, image, price, content, categories } = await request.json();
-    console.log(categories);
-    // const body = await request.json();
+    const { title, image, price, content, categories, authorId } =
+      await request.json();
     const post = await prisma.post.create({
       data: {
         title: title,
         image: image,
         price: price,
         content: content,
-        categories: {
-          connect: { id: categories },
-        },
+        categories: { connect: { id: categories } },
+        authorId: authorId,
       },
     });
     return new NextResponse(JSON.stringify(post, { status: 200 }));

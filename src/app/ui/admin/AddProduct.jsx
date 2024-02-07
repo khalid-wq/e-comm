@@ -1,8 +1,14 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { HiMiniArrowUturnLeft } from "react-icons/hi2";
 
 function AddProduct() {
+  const session = useSession();
+  const userId = session?.data?.user?.id;
+  console.log(userId);
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(null);
@@ -32,6 +38,7 @@ function AddProduct() {
           price: price,
           content: description,
           categories: cat,
+          authorId: userId,
         }),
         method: "POST",
         headers: {
@@ -51,7 +58,7 @@ function AddProduct() {
       </div>
       <div className="flex justify-between items-center ">
         <div className="flex flex-col w-[49%] ">
-          <label htmlFor="image">Image</label>
+          <label htmlFor="image">Image Url</label>
           <input
             type="text"
             name="image"
@@ -115,9 +122,18 @@ function AddProduct() {
           </span>
         </div>
       </div>
-      <button onClick={handleSubmit} className="bg-greenColor p-2 rounded-md">
-        Submit
-      </button>
+      <div className="flex items-center gap-4">
+        {" "}
+        <button
+          onClick={handleSubmit}
+          className="bg-greenColor py-2 px-3 rounded-md"
+        >
+          Submit
+        </button>
+        <Link href={`/admin/products`} className="underline">
+          <HiMiniArrowUturnLeft className="w-6 h-6" />
+        </Link>
+      </div>
     </div>
   );
 }
